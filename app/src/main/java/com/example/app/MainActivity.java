@@ -56,7 +56,7 @@ ArrayAdapter arrayAdapter ;
                 // more negative number ~ stringer connection ...
 Log.i("Device found!", "Device Name: " + name + "Address: " + address + "RSSI "+ rssi);
 
-if(name.equals("")){
+if(name == null || name.equals("")){
     bluetoothDevices.add(address + " " + "RSSI " + rssi + "dBm units");
 
 }
