@@ -56,13 +56,19 @@ ArrayAdapter arrayAdapter ;
                 // more negative number ~ stringer connection ...
 Log.i("Device found!", "Device Name: " + name + "Address: " + address + "RSSI "+ rssi);
 
+String deviceString = "";
 if(name == null || name.equals("")){
-    bluetoothDevices.add(address + " " + "RSSI " + rssi + "dBm units");
-
+   // bluetoothDevices.add(address + " " + "RSSI " + rssi + "dBm units");
+    deviceString = address + " " + "RSSI " + rssi + "dBm units";
 }
 
 else{
-    bluetoothDevices.add(name + " " + "RSSI " + rssi + "dBm units");
+   // bluetoothDevices.add(name + " " + "RSSI " + rssi + "dBm units");
+    deviceString = name + " " + "RSSI " + rssi + "dBm units";
+}
+
+if(!bluetoothDevices.contains(deviceString)){
+    bluetoothDevices.add(deviceString);
 }
 
 arrayAdapter.notifyDataSetChanged();
@@ -77,7 +83,7 @@ arrayAdapter.notifyDataSetChanged();
         statusTextView.setText("Searching devices...");
 //        not to lauch the process everytime ...
         searchButton.setEnabled(false);
-
+bluetoothDevices.clear();
         bluetoothAdapter.startDiscovery();
     }
 
