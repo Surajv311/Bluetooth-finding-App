@@ -26,7 +26,7 @@ TextView statusTextView;
 Button searchButton;
 BluetoothAdapter bluetoothAdapter;
 ArrayList<String> bluetoothDevices = new ArrayList<>();
-ArrayAdapter arrayAdapter ; 
+ArrayAdapter arrayAdapter ;
 
 
     //  for receiver
@@ -56,6 +56,16 @@ ArrayAdapter arrayAdapter ;
                 // more negative number ~ stringer connection ...
 Log.i("Device found!", "Device Name: " + name + "Address: " + address + "RSSI "+ rssi);
 
+if(name.equals("")){
+    bluetoothDevices.add(address + " " + "RSSI " + rssi + "dBm units");
+
+}
+
+else{
+    bluetoothDevices.add(name + " " + "RSSI " + rssi + "dBm units");
+}
+
+arrayAdapter.notifyDataSetChanged();
 
             }
 
@@ -80,6 +90,10 @@ Log.i("Device found!", "Device Name: " + name + "Address: " + address + "RSSI "+
         listView = findViewById(R.id.listView);
         statusTextView = findViewById(R.id.statusTextView);
         searchButton = findViewById(R.id.searchButton);
+
+        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, bluetoothDevices);
+        listView.setAdapter(arrayAdapter);
+        // adding the data to our list view in app
 
 // now we set up the bluetooth...
 
